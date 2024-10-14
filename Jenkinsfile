@@ -5,6 +5,7 @@ def shOutput = ""
 def buildxPushTags = ""
 
 pipeline {
+	agent any
 	options {
 		buildDiscarder(logRotator(numToKeepStr: '5'))
 		disableConcurrentBuilds()
