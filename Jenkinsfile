@@ -5,9 +5,6 @@ def shOutput = ""
 def buildxPushTags = ""
 
 pipeline {
-	agent {
-		label 'docker-multiarch'
-	}
 	options {
 		buildDiscarder(logRotator(numToKeepStr: '5'))
 		disableConcurrentBuilds()
