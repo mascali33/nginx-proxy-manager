@@ -728,10 +728,10 @@ const internalCertificate = {
 	getCertificateInfoFromFile: (certificate_file, throw_expired) => {
 		let certData = {};
 
-		return utils.exec('openssl x509 -in ' + certificate_file + ' -subject -noout')
+		return utils.exec('openssl x509 -in ' + certificate_file + ' -ext subjectAltName -noout')
 			.then((result) => {
 				// subject=CN = something.example.com
-				const regex = /(?:subject=)?[^=]+=\s+(\S+)/gim;
+				const regex = /^DNS:([^,]+)/gim;
 				const match = regex.exec(result);
 
 				if (typeof match[1] === 'undefined') {
