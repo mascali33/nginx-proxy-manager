@@ -731,7 +731,7 @@ const internalCertificate = {
 		return utils.exec('openssl x509 -in ' + certificate_file + ' -ext subjectAltName -noout')
 			.then((result) => {
 				// subject=CN = something.example.com
-				const regex = /^DNS:([^,]+)/gim;
+				const regex = /DNS:([^\s,]+)/im;
 				const match = regex.exec(result);
 
 				if (typeof match[1] === 'undefined') {
